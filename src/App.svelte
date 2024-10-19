@@ -17,8 +17,8 @@
     <button class="x" on:click={async() => {
       let answ = await fetch(`http://localhost:8000/posts/${d.id}`,
        {method: 'DELETE'})
-      console.log(answ)
-      data = data.filter(x => x.title !== d.title)
+      if (answ.ok)
+        data = data.filter(x => x.title !== d.title)
     }}>Töröl</button>
   </p>
 {/each}
