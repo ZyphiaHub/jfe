@@ -1,24 +1,46 @@
 <script>
-  import { onMount } from 'svelte';
-  var ujadat = {}
-  import Cica from './lib/Cica.svelte'
-  var data = []
-  onMount(async () => {
-    data = await fetch('http://localhost:8000/posts')
-    .then(r => r.json())
-  })
+  import Cica from './lib/Cica.svelte';
+
+  // @ts-ignore
+  import Counter from './lib/Counter.svelte';
+  // @ts-ignore
+  import Masik from './lib/Masik.svelte';
+
+  var selected = 'Counter'
 </script>
+
 <main>
-  <h1>Bevásárló lista</h1>
-  <Cica bind:adat={ujadat} bind:data/>
-{#each data as d}
-  <p>{d.title}
-    <button class="x" on:click={async() => {
-      let answ = await fetch(`http://localhost:8000/posts/${d.id}`,
-       {method: 'DELETE'})
-      if (answ.ok)
-        data = data.filter(x => x.title !== d.title)
-    }}>Töröl</button>
-  </p>
-{/each}
+  <div class="menu">
+    <button on:click={() => (selected = 'Counter')}>Counter</button>
+    <button on:click={() => (selected = 'mv')}>Másik valami</button>
+    <button on:click={() => (selected = 'Cica')}>Cica</button>
+  </div>
+  <div>
+    {#if selected === 'mv'}
+      <Masik />
+    {:else if selected === 'Counter'}
+      <Counter />
+    {:else if selected === 'Cica'}
+      <Cica />
+    {/if}
+  </div>
 </main>
+
+<style>
+  div.menu {
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 20px;
+    background-color: #333;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  div.menu button {
+    font-size: 12px;
+    padding: 2px 20px;
+    margin: 2px;
+  }
+</style>
