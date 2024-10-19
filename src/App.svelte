@@ -1,16 +1,15 @@
 <script>
+  import { onMount } from 'svelte';
   var ujadat = {}
   import Cica from './lib/Cica.svelte'
   var data = []
-</script>
-
-<main>
-  <Cica bind:adat={ujadat} bind:data/>
-  <hr>
-  <button on:click={async () => {
+  onMount(async () => {
     data = await fetch('http://localhost:8000/posts')
     .then(r => r.json())
-  }}>Cica</button>
+  })
+</script>
+<main>
+  <Cica bind:adat={ujadat} bind:data/>
 {#each data as d}
   <p>{d.title}
     <button class="x" on:click={async() => {
