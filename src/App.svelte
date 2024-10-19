@@ -13,7 +13,14 @@
     .then(r => r.json())
   }}>Cica</button>
 {#each data as d}
-  <p>{d.title}</p>
+  <p>{d.title}
+    <button class="x">Töröl</button>
+  </p>
 {/each}
 </main>
-
+<style>
+  button.x {
+    padding: 5px;
+    font-size: 12px;
+  }
+</style>
