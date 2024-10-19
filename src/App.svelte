@@ -9,6 +9,7 @@
   })
 </script>
 <main>
+  <h1>Bevásárló lista</h1>
   <Cica bind:adat={ujadat} bind:data/>
 {#each data as d}
   <p>{d.title}
