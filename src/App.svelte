@@ -14,7 +14,12 @@
   }}>Cica</button>
 {#each data as d}
   <p>{d.title}
-    <button class="x">Töröl</button>
+    <button class="x" on:click={async() => {
+      let answ = await fetch(`http://localhost:8000/posts/${d.id}`,
+       {method: 'DELETE'})
+      console.log(answ)
+      data = data.filter(x => x.title !== d.title)
+    }}>Töröl</button>
   </p>
 {/each}
 </main>
