@@ -1,12 +1,11 @@
 <script>
-  var cicanev = 'Mici'
+  var ujadat = {}
   import Cica from './lib/Cica.svelte'
   var data = []
 </script>
 
 <main>
-  <Cica bind:name={cicanev}/>
-  {cicanev}
+  <Cica bind:adat={ujadat} bind:data/>
   <hr>
   <button on:click={async () => {
     data = await fetch('http://localhost:8000/posts')
@@ -23,9 +22,3 @@
   </p>
 {/each}
 </main>
-<style>
-  button.x {
-    padding: 5px;
-    font-size: 12px;
-  }
-</style>
