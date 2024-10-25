@@ -43,4 +43,7 @@
     padding: 2px 20px;
     margin: 2px;
   }
+  main {
+    background-color: aquamarine;
+  }
 </style>
